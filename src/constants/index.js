@@ -1,4 +1,4 @@
-index.js
+// index.js
 export const servicesData = [
   {
     title: "Backend Engineering & APIs",
@@ -82,7 +82,9 @@ export const projects = [
     id: 1,
     name: "GenAI HR Assistant – MS Teams Bots",
     description:
-      "Designed and deployed multi-agent GenAI bots on Microsoft Teams that automate HR FAQs, ticket triage, and policy lookups, consistently returning answers in under one second.",
+      "Designed and deployed multi-agent GenAI bots on Microsoft Teams to automate HR FAQs, ticket triage, and policy lookups with sub‑second responses.",
+    snippet:
+      "Technologies: Python, MS Teams bots, REST APIs, LLMs, prompt engineering, workflow orchestration. Results: consistently delivered < 1s responses for common HR queries and reduced manual HR ticket load. Problem solving: turned loosely defined HR processes into structured workflows with guardrails to keep answers accurate and on‑policy.",
     href: "#",
     image: "/assets/projects/genai-hr-bots.jpg",
     bgImage: "/assets/projects/genai-hr-bots.jpg",
@@ -98,7 +100,9 @@ export const projects = [
     id: 2,
     name: "Course Recommender Backend – Sconti",
     description:
-      "Implemented a Flask backend that serves personalised course recommendations using both collaborative and content-based filtering, reducing average response latency by ~35%.",
+      "Implemented a Flask backend that serves personalised course recommendations using collaborative and content‑based filtering.",
+    snippet:
+      "Technologies: Python, Flask, MySQL, recommender systems (collaborative + content‑based), REST APIs. Results: optimised query paths to cut API latency by ~35%, improving perceived responsiveness for users. Problem solving: designed clean API contracts around noisy course–user data and tuned similarity logic to avoid irrelevant recommendations.",
     href: "#",
     image: "/assets/projects/course-recommender.jpg",
     bgImage: "/assets/backgrounds/royal-blue-bg.jpg",
@@ -114,7 +118,9 @@ export const projects = [
     id: 3,
     name: "Graph-to-Insight Captioning System",
     description:
-      "Built a deep learning pipeline that converts graphs into natural-language captions and question–answer pairs, storing structured insights in MongoDB for later search and analysis.",
+      "Built a deep learning pipeline that converts graphs into natural‑language captions and question–answer pairs.",
+    snippet:
+      "Technologies: PyTorch, CNNs, LSTM/Transformer layers, LogicNLG ideas, MongoDB. Results: automatically generated descriptive captions and follow‑up questions for a variety of chart types (bar, line, pie). Problem solving: bridged the gap between numeric visual data and written explanations by combining visual feature extraction with sequence models and a structured storage layer.",
     href: "#",
     image: "/assets/projects/graph-captioning.jpg",
     bgImage: "/assets/backgrounds/royal-blue-bg.jpg",
@@ -130,7 +136,9 @@ export const projects = [
     id: 4,
     name: "ICAO Weather Risk Analysis System",
     description:
-      "Developed a full-stack tool that ingests live METAR feeds from ICAO airports and scores aviation weather risk to support safer route and scheduling decisions.",
+      "Developed a full‑stack tool that ingests METAR feeds from ICAO airports and scores aviation weather risk for flights.",
+    snippet:
+      "Technologies: Python, Flask/FastAPI, ICAO/METAR standards, weather APIs, basic risk modelling. Results: produced interpretable risk scores and summaries that can support safer routing and scheduling decisions. Problem solving: normalised complex weather codes into features, designed a risk metric, and exposed it via an API that non‑experts can understand.",
     href: "#",
     image: "/assets/projects/icao-weather-risk.jpg",
     bgImage: "/assets/backgrounds/building-bg.jpg",
@@ -146,7 +154,9 @@ export const projects = [
     id: 5,
     name: "Autism Trait Detection Model",
     description:
-      "Trained and evaluated a behavioural screening model for autism traits, optimised for high recall so fewer at-risk children are missed in early-stage assessments.",
+      "Trained and evaluated a behavioural screening model for autism traits with an emphasis on high recall.",
+    snippet:
+      "Technologies: Python, scikit‑learn, Pandas, Jupyter, model evaluation/validation. Results: prioritised recall so potentially at‑risk children are less likely to be missed during screening. Problem solving: dealt with imbalanced behavioural data, chose suitable algorithms, and tuned thresholds to align with the goal of early, sensitive detection.",
     href: "#",
     image: "/assets/projects/autism-detection.jpg",
     bgImage: "/assets/backgrounds/pet-cat-bg.jpg",
@@ -162,7 +172,9 @@ export const projects = [
     id: 6,
     name: "Test Automation Mini Suite",
     description:
-      "Engineered a modular UI automation suite in Java using Selenium and TestNG, covering critical flows such as authentication and dashboards for fast regression feedback.",
+      "Engineered a modular UI automation suite in Java using Selenium and TestNG to cover critical UI flows.",
+    snippet:
+      "Technologies: Java, Selenium WebDriver, TestNG, Page Object Model. Results: enabled fast, repeatable regression checks for key user journeys during development. Problem solving: abstracted UI complexity into page objects and separated test data from logic to keep the suite maintainable as the UI evolved.",
     href: "#",
     image: "/assets/projects/test-automation-suite.jpg",
     bgImage: "/assets/backgrounds/car-bg.jpg",
@@ -178,7 +190,9 @@ export const projects = [
     id: 7,
     name: "GNN Cyberbullying Detection System",
     description:
-      "Built a cyberbullying detection system that combines DistilBERT text embeddings with graph neural networks over a semantic k‑NN graph, achieving around 0.90 F1 on held-out data.",
+      "Built a cyberbullying detection system combining DistilBERT embeddings with graph neural networks over a semantic k‑NN graph.",
+    snippet:
+      "Technologies: PyTorch Geometric, DistilBERT, GCNs, NLP, evaluation pipelines. Results: achieved ~0.90 F1 on a held‑out dataset of social media posts. Problem solving: modelled relationships between posts via a similarity graph to capture context that a single‑sentence classifier would miss.",
     href: "#",
     image: "/assets/projects/gnn-cyberbullying.jpg",
     bgImage: "/assets/backgrounds/royal-blue-bg.jpg",
