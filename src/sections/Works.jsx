@@ -10,6 +10,7 @@ const Works = () => {
   const previewRef = useRef(null);
 
   const [currentIndex, setCurrentIndex] = useState(null);
+  const [openSnippetIndex, setOpenSnippetIndex] = useState(null);
   const text = `Featured projects reflects my process of solving
     real problems, Combining usability, performance,
     and clean logic Work with purpose.`;
@@ -99,6 +100,10 @@ const Works = () => {
     moveY.current(mouse.current.y);
   };
 
+  const handleToggleSnippet = (index) => {
+    setOpenSnippetIndex((prev) => (prev === index ? null : index));
+  };
+
   return (
     <section id="work" className="flex flex-col min-h-screen">
       <AnimatedHeaderSection
@@ -119,6 +124,7 @@ const Works = () => {
             className="relative flex flex-col gap-1 py-5 cursor-pointer group md:gap-0"
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={() => handleMouseLeave(index)}
+            onClick={() => handleToggleSnippet(index)}
           >
             {/* overlay */}
             <div
@@ -153,11 +159,19 @@ const Works = () => {
                 </p>
               ))}
             </div>
-            {/* description preview */}
+            {/* description preview / snippet */}
             <div className="px-4 md:px-10 mt-1 md:mt-2 md:group-hover:px-12 transition-all duration-500">
               <p className="text-sm md:text-base text-black/70 md:group-hover:text-white/80">
                 {project.description}
               </p>
+              {openSnippetIndex === index && (
+                <div className="mt-3 rounded-xl border border-black/10 bg-black/5 md:bg-white/5 px-4 py-3 text-xs md:text-sm text-black/80 md:text-white/80">
+                  <p>
+                    <span className="font-semibold">Snippet:</span>{" "}
+                    {project.snippet}
+                  </p>
+                </div>
+              )}
             </div>
             {/* mobile preview image */}
             <div className="px-4 md:px-10 md:hidden">
