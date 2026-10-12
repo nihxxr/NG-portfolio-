@@ -1,96 +1,43 @@
-# 🌐 3D Awwwards-Level Developer Portfolio
+# Nihar Girish, portfolio
 
-### Built with React, GSAP, Three.js, TailwindCSS
+My portfolio site: five featured projects with a case study each, my experience, skills and contact details.
 
-This is a fully animated, interactive, 3D developer portfolio designed to **impress clients, recruiters, and hiring managers**. It's more than a portfolio—it's a web experience built with production-level code, scroll-based animations, and real-world best practices.
+## What's on it
 
-> ⚡ Inspired by Awwwards-level sites — built with React (Vite), TailwindCSS, GSAP, React Three Fiber, and Drei.
+The home page opens with my name set large over a field of falling 0s and 1s. Digits near your cursor turn green and fall faster. My photo sits in a brutalist frame on the right and shifts as you move the pointer, while the green block behind it moves the other way.
 
-<br/>
-<div>
-  <img src="https://github.com/user-attachments/assets/4eaf9399-fd02-4a90-83f7-2b5a361bc032" alt="Hero" style="border-radius: 8px;"/>
-  <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-    <img src="https://github.com/user-attachments/assets/155bf742-b24f-4119-89f4-87e6d88c8f53" alt="Works" style="width: 32%; border-radius: 8px;"/>
-    <img src="https://github.com/user-attachments/assets/f22b9749-85ed-434f-a5f6-df1f8e221103" alt="ContactSummary" style="width: 32%; border-radius: 8px;"/>
-    <img src="https://github.com/user-attachments/assets/3e473322-b96a-433b-aec5-ece9bab25795" alt="Contact" style="width: 32%; border-radius: 8px;"/>
-  </div>
-</div>
-<br/>
+Below that, a bento grid holds the five featured projects: Asli, DatasetFinder, ICAO Weather Risk, Muse Copywriter and the AQ-10 Screener. Click a card and the screenshot and title carry over into the case study page through the View Transitions API. Each case study covers the problem, what I built, how it works, the results, and what I'd improve, plus more screenshots and a link to the next project.
 
-> 📺 [Watch Full YouTube Walkthrough](https://youtu.be/i0229UsdBwc)
----
+The rest of the home page covers experience, skills, other projects, about, education and contact.
 
-## 🚀 Tech Stack
+## Stack
 
-| Technology       | Description                             |
-| ---------------- | --------------------------------------- |
-| **React (Vite)** | Fast dev server and production bundling |
-| **Tailwind CSS** | Utility-first styling for components    |
-| **GSAP**         | Scroll-based animation and motion logic |
-| **Three.js**     | 3D scenes powered by React Three Fiber  |
-| **Drei**         | Useful helpers for 3D rendering         |
+React 19 with React Router 7 and Vite. Styling is one plain CSS file. Archivo (its width axis pushed to fully expanded for the display type) and Martian Mono (only in the binary rain) ship with the build through Fontsource. There are no animation libraries; the rain is a canvas and the transitions are native.
 
----
+## Editing content
 
-## 📁 Features
+All text lives in two files, so updating the site means editing data, not components:
 
-- 🔥 3D Hero Section with animated planet and golden ring
-- 🧩 Smooth slide-in Navbar with staggered link animations
-- 🎯 Scroll-triggered Service Summary with horizontal word motion
-- 🖼️ Works section with hover overlays and interactive previews
-- ✍️ About section with clip-path image reveal + typewriter text
-- 🏁 Marquee-based Contact Summary and CTA
-- 💼 Fully responsive and accessible on all screen sizes
+- `src/data/projects.js` holds the featured projects and their case studies.
+- `src/data/site.js` holds contact links, experience, skills, other projects and education.
 
----
+Screenshots go in `public/work/<project>/` as WebP.
 
-## 📦 Setup & Installation
+## Run it
 
 ```bash
-git clone https://github.com/Ali-Sanati/awwwards-portfolio.git
-cd awwwards-portfolio
 npm install
-npm run dev
+npm run dev       # http://localhost:5173
+npm run lint
+npm run build
 ```
 
-> Open http://localhost:5173 in your browser.
+## Deploy
 
----
+`netlify.toml` builds with `npm run build` and publishes `dist`. `public/_redirects` sends every path to `index.html`, so case study URLs like `/work/asli` work on refresh.
 
-## 🛠️ Customization Tips
+## Accessibility and motion
 
-- Change text, images, and links in /constants/index.js
-
-- Update 3D models and scene in Hero.jsx
-
-- Add your own contact info in Contact.jsx
-
-- Adjust colors, fonts, and layout via tailwind.config.js
-
----
-
-## 🔗 Assets
-
-Assets used in the project can be found [here](https://github.com/user-attachments/files/19820923/public.zip)
-
----
-
-## 📣 Like the project?
-
-If this helped you build or inspire your own site:
-
-- ⭐ Star this repo
-
-- 📺 [Watch the full walkthrough on YouTube](https://youtu.be/i0229UsdBwc)
-
-- 📬 [Connect on LinkedIn](https://www.linkedin.com/in/ali-sanati)
-
-- 📷 [Follow me on Instagram](https://www.instagram.com/ali.sanatidev/reels/)
-
----
-
-## 🤝 Let’s Build Together
-
-Drop a comment on the video or open an issue with your idea!
-
-> 📩 Like, subscribe, and let me know what kind of project you want to build together!
+- With reduced motion turned on, the rain draws one still frame, the photo stays put, and page transitions switch off.
+- The rain pauses when it scrolls out of view or the tab is hidden.
+- Every interactive element has a visible focus style, and the nav collapses to a single Contact button on phones.
