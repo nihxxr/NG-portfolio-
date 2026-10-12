@@ -27,7 +27,12 @@ export default function HeroPhoto({ src, alt }) {
 
   return (
     <div className="hero-photo" ref={ref}>
-      <img src={src} alt={alt} width="1075" height="1081" fetchPriority="high" />
+      <img
+        src={src}
+        srcSet={`${src.replace(".webp", "-1080.webp")} 1075w, ${src} 2150w`}
+        sizes="(max-width: 960px) 100vw, 62vw"
+        alt={alt} width="2150" height="2162" fetchPriority="high"
+      />
     </div>
   );
 }
