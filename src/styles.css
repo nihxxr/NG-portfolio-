@@ -1,7 +1,7 @@
 /*
   Red on black, built like an instrument panel.
   Solid borders, hard red offset shadows when you act on something, square
-  corners, and a monospace HUD voice for small readouts. The rain, scanner
+  corners, and a monospace HUD voice for small readouts. The rain, portrait
   and terminal live in the hero; the rest of the page stays still.
 */
 :root {
@@ -76,14 +76,30 @@ h1, h2, h3, p { margin: 0; }
 
 /* Hero */
 .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); isolation: isolate; }
-.rain { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; opacity: 0.85; }
-.orb { position: absolute; border-radius: 50%; filter: blur(90px); z-index: -1; pointer-events: none; }
+.rain { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -3; opacity: 0.85; }
+.orb { position: absolute; border-radius: 50%; filter: blur(90px); z-index: -2; pointer-events: none; }
 .orb-a { width: 46vw; height: 46vw; left: -14vw; top: -16vw; background: radial-gradient(circle, rgba(255, 46, 63, 0.34), transparent 65%); }
 .orb-b { width: 38vw; height: 38vw; right: -10vw; bottom: -18vw; background: radial-gradient(circle, rgba(122, 13, 23, 0.55), transparent 65%); }
 
 .hero-inner {
   max-width: var(--max); margin: 0 auto; padding: clamp(3rem, 9vh, 7rem) var(--gutter) clamp(3.5rem, 9vh, 6rem);
-  display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: center;
+  display: grid; grid-template-columns: minmax(0, 1fr); min-height: min(82vh, 52rem); align-items: center;
+}
+.hero-copy { position: relative; max-width: 40rem; }
+
+/* Portrait in the background, fading into the black on the left and bottom */
+.hero-photo {
+  position: absolute; z-index: -1; top: 0; right: 0; bottom: 0; width: min(62vw, 58rem);
+  overflow: hidden; pointer-events: none; --px: 0; --py: 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 38%), linear-gradient(to top, transparent 0%, #000 22%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent 0%, #000 38%), linear-gradient(to top, transparent 0%, #000 22%);
+  mask-composite: intersect;
+}
+.hero-photo img {
+  width: 100%; height: 100%; object-fit: cover; object-position: 38% 22%;
+  transform: scale(1.05) translate(calc(var(--px) * -8px), calc(var(--py) * -6px));
+  transition: transform 400ms cubic-bezier(.2, .8, .2, 1);
 }
 .hero-name {
   font-size: var(--step-4); font-weight: 900; font-stretch: 125%;
@@ -225,13 +241,21 @@ h1, h2, h3, p { margin: 0; }
 /* Responsive */
 @media (max-width: 960px) {
   .hero-inner { grid-template-columns: 1fr; }
-  .scan { justify-self: start; width: min(100%, 24rem); order: -1; }
   .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .card-hero { grid-column: span 2; grid-row: auto; }
   .card-tall, .card-wide, .card-half { grid-column: span 1; grid-row: auto; }
   .bento-skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .more { grid-template-columns: 1fr; }
   .about-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 960px) {
+  .hero-photo {
+    left: 0; width: 100%; bottom: auto; height: min(78vh, 40rem);
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 45%); mask-image: linear-gradient(to top, transparent 0%, #000 45%);
+    -webkit-mask-composite: source-over; mask-composite: add;
+  }
+  .hero-photo img { object-position: 42% 18%; }
+  .hero-inner { min-height: 0; padding-top: min(52vh, 26rem); }
 }
 @media (max-width: 640px) {
   .nav nav a:not(.nav-cta) { display: none; }
@@ -247,7 +271,7 @@ h1, h2, h3, p { margin: 0; }
 }
 
 /* ---- Techy layer ---- */
-.mono, .hero-kicker, .scan-readout, .timeline-when, .case-meta dt, .card-stat, .edu dt, .term, .more .more-stack, .next span {
+.mono, .hero-kicker, .timeline-when, .case-meta dt, .card-stat, .edu dt, .term, .more .more-stack, .next span {
   font-family: var(--mono); letter-spacing: -0.01em;
 }
 .hero-kicker { color: var(--accent); font-size: var(--step--1); margin-bottom: 1.25rem; }
@@ -256,37 +280,6 @@ h1, h2, h3, p { margin: 0; }
 .hero-name { text-shadow: 0 0 40px rgba(255, 46, 63, 0.18); }
 .hero-name span span { display: inline-block; }
 
-/* Scanner portrait */
-.scan { position: relative; margin: 0; justify-self: end; width: min(100%, 26rem); --mx: -999px; --my: -999px; touch-action: manipulation; cursor: crosshair; }
-.scan-frame { position: relative; aspect-ratio: 1 / 1; overflow: hidden; border: 2px solid var(--soft); background: #120305; box-shadow: 14px 14px 0 var(--accent); }
-.scan-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 40% 30%; }
-.scan-base { filter: grayscale(1) contrast(1.25) brightness(0.9) sepia(1) hue-rotate(-50deg) saturate(4.5); }
-.scan-lens {
-  -webkit-mask-image: radial-gradient(circle 82px at var(--mx) var(--my), #000 96%, transparent 100%);
-  mask-image: radial-gradient(circle 82px at var(--mx) var(--my), #000 96%, transparent 100%);
-}
-.scan-frame::before {
-  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.22) 0 1px, transparent 1px 3px);
-}
-.scan-frame::after {
-  content: ""; position: absolute; z-index: 3; pointer-events: none; width: 168px; height: 168px; border-radius: 50%;
-  left: calc(var(--mx) - 84px); top: calc(var(--my) - 84px); border: 1.5px solid var(--accent);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 46, 63, 0.45);
-}
-.scan-line {
-  position: absolute; left: 0; right: 0; top: 0; height: 2px; z-index: 3; pointer-events: none;
-  background: var(--accent); box-shadow: 0 0 14px 2px rgba(255, 46, 63, 0.7); opacity: 0.8;
-  animation: sweep 4.5s linear infinite;
-}
-@keyframes sweep { from { transform: translateY(0); } to { transform: translateY(26rem); } }
-.hud { position: absolute; width: 22px; height: 22px; z-index: 4; border-color: var(--soft); border-style: solid; pointer-events: none; }
-.hud-tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
-.hud-tr { top: 10px; right: 10px; border-width: 2px 2px 0 0; }
-.hud-bl { bottom: 10px; left: 10px; border-width: 0 0 2px 2px; }
-.hud-br { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
-.scan-readout { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1.4rem; font-size: 0.75rem; color: var(--soft-3); }
-.scan-readout span:last-child { color: var(--accent); }
 
 /* Terminal */
 .hero-term { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) clamp(3rem, 8vh, 5rem); }
@@ -315,9 +308,5 @@ h1, h2, h3, p { margin: 0; }
 .card:hover .card-title, .card:focus-visible .card-title { color: var(--accent); }
 
 @media (prefers-reduced-motion: reduce) {
-  .scan-line, .hero-kicker::after { animation: none; }
-  .scan-line { display: none; }
-}
-@media (max-width: 960px) {
-  .scan-frame { box-shadow: 8px 8px 0 var(--accent); }
+  .hero-kicker::after { animation: none; }
 }

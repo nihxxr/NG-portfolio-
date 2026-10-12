@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import BinaryRain from "../components/BinaryRain";
-import ScanPhoto from "../components/ScanPhoto";
+import HeroPhoto from "../components/HeroPhoto";
 import Scramble from "../components/Scramble";
 import Terminal from "../components/Terminal";
 import { projects } from "../data/projects";
@@ -30,6 +30,7 @@ export default function Home() {
         <BinaryRain className="rain" />
         <span className="orb orb-a" aria-hidden="true" />
         <span className="orb orb-b" aria-hidden="true" />
+        <HeroPhoto src="/nihar.webp" alt="Nihar Girish" />
         <div className="hero-inner">
           <div className="hero-copy">
             <p className="hero-kicker" aria-hidden="true">&gt; ai_engineer.init()</p>
@@ -41,7 +42,6 @@ export default function Home() {
               <a className="btn btn-ghost" href={`mailto:${links.email}`}>Email me</a>
             </div>
           </div>
-          <ScanPhoto src="/nihar.webp" alt="Nihar Girish" />
         </div>
         <div className="hero-term"><Terminal /></div>
       </section>

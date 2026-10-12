@@ -6,7 +6,7 @@ My portfolio site: five featured projects with a case study each, my experience,
 
 The site is red on black and built like an instrument panel. The home page opens with my name decoding from random characters over a field of falling 0s and 1s; digits near your cursor glow and fall faster.
 
-My photo sits in a red duotone frame. Move over it and a lens reveals the full-colour photo under the cursor, with HUD brackets, a live coordinate readout and a slow scanline. On a phone, tap to place the lens.
+My photo fills the right side of the hero with no frame and no filter, fading into the black behind my name, and drifts a few pixels as you move the cursor. The rain falls behind it, so nothing crosses my face. On phones the photo fills the top of the screen and fades down into the text.
 
 Under the hero sits a working terminal. Type `help`, `whoami`, `projects`, `experience`, `skills` or `contact`, or `open asli` to jump straight to a case study. Up and down arrows recall earlier commands, and clickable chips cover the main commands for anyone who doesn't want to type.
 
@@ -16,7 +16,7 @@ The rest of the home page covers experience, skills, other projects, about, educ
 
 ## Stack
 
-React 19 with React Router 7 and Vite. Styling is one plain CSS file. Archivo (its width axis pushed to fully expanded for the display type) and Martian Mono (for the terminal and small HUD readouts) ship with the build through Fontsource. There are no animation libraries: the rain is a canvas, the lens is a CSS mask, and the page transitions are native.
+React 19 with React Router 7 and Vite. Styling is one plain CSS file. Archivo (its width axis pushed to fully expanded for the display type) and Martian Mono (for the terminal and small HUD readouts) ship with the build through Fontsource. There are no animation libraries: the rain is a canvas, the photo fade is a CSS mask, and the page transitions are native.
 
 ## Editing content
 
@@ -42,7 +42,7 @@ npm run build
 
 ## Accessibility and motion
 
-- With reduced motion turned on, the rain draws one still frame, text doesn't scramble, the scanline stops, and page transitions switch off.
+- With reduced motion turned on, the rain draws one still frame, text doesn't scramble, the photo stays still, and page transitions switch off.
 - Scrambled text keeps its real wording in an `aria-label`, so screen readers never hear the random characters.
 - The terminal is a labelled form with a live log, so it works with a keyboard and a screen reader.
 - The rain pauses when it scrolls out of view or the tab is hidden.
