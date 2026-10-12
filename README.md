@@ -6,7 +6,7 @@ My portfolio site: five featured projects with a case study each, my experience,
 
 The site is red on black and built like an instrument panel. The home page opens with my name decoding from random characters over a field of falling 0s and 1s; digits near your cursor glow and fall faster.
 
-My photo fills the right side of the hero with no frame and no filter, fading into the black behind my name, and drifts a few pixels as you move the cursor. The rain falls behind it, so nothing crosses my face. On phones the photo fills the top of the screen and fades down into the text.
+My photo fills the right side of the hero with no frame and no filter. Its original background is cut out (with the isnet segmentation model via rembg), so the red rain falls where the background used to be, with a faint red backlight behind me. It fades into the black behind my name and drifts a few pixels as you move the cursor. On phones the photo fills the top of the screen and fades down into the text.
 
 Under the hero sits a working terminal. Type `help`, `whoami`, `projects`, `experience`, `skills` or `contact`, or `open asli` to jump straight to a case study. Up and down arrows recall earlier commands, and clickable chips cover the main commands for anyone who doesn't want to type.
 

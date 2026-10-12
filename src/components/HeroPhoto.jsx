@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
-// Full-bleed portrait behind the hero text. No frame or effects on the photo
-// itself; it fades into the black and drifts a few pixels with the pointer.
+// Cut-out portrait behind the hero text, background removed so the rain shows
+// around it. It fades into the black and drifts a few pixels with the pointer.
 export default function HeroPhoto({ src, alt }) {
   const ref = useRef(null);
 

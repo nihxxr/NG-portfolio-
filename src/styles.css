@@ -96,8 +96,12 @@ h1, h2, h3, p { margin: 0; }
   mask-image: linear-gradient(to right, transparent 0%, #000 38%), linear-gradient(to top, transparent 0%, #000 22%);
   mask-composite: intersect;
 }
+.hero-photo::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 42% 55% at 52% 45%, rgba(255, 46, 63, 0.28), transparent 70%);
+}
 .hero-photo img {
-  width: 100%; height: 100%; object-fit: cover; object-position: 38% 22%;
+  position: relative; width: 100%; height: 100%; object-fit: cover; object-position: 38% 22%;
   transform: scale(1.05) translate(calc(var(--px) * -8px), calc(var(--py) * -6px));
   transition: transform 400ms cubic-bezier(.2, .8, .2, 1);
 }
