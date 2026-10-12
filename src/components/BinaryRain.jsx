@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-// Falling 0s and 1s behind the hero. Columns near the pointer glow green and
+// Falling 0s and 1s behind the hero. Columns near the pointer glow brighter and
 // fall faster. Pauses off screen and in background tabs; with reduced motion
 // it draws one still frame.
 export default function BinaryRain({ className = "" }) {
@@ -32,12 +32,12 @@ export default function BinaryRain({ className = "" }) {
       cols = Math.ceil(w / size);
       drops = Array.from({ length: cols }, () => Math.random() * (h / size));
       speeds = Array.from({ length: cols }, () => 0.12 + Math.random() * 0.22);
-      ctx.fillStyle = "#011207";
+      ctx.fillStyle = "#000000";
       ctx.fillRect(0, 0, w, h);
     };
 
     const frame = () => {
-      ctx.fillStyle = "rgba(1, 18, 7, 0.06)";
+      ctx.fillStyle = "rgba(0, 0, 0, 0.06)";
       ctx.fillRect(0, 0, w, h);
       for (let i = 0; i < cols; i++) {
         const before = Math.floor(drops[i]);
@@ -47,8 +47,8 @@ export default function BinaryRain({ className = "" }) {
         const row = Math.floor(drops[i]);
         if (row === before) continue; // draw once per row so digits stay crisp
         ctx.fillStyle = near > 0
-          ? `rgba(139, 197, 61, ${0.4 + near * 0.6})`
-          : "rgba(226, 240, 204, 0.2)";
+          ? `rgba(255, 46, 63, ${0.45 + near * 0.55})`
+          : "rgba(255, 46, 63, 0.16)";
         ctx.fillText(Math.random() > 0.5 ? "1" : "0", x, row * size);
         if (row * size > h && Math.random() > 0.95) drops[i] = 0;
       }

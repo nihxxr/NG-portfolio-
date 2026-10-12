@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router";
 import { projectBySlug, projects } from "../data/projects";
 import NotFound from "./NotFound";
+import Scramble from "../components/Scramble";
 
 function Section({ title, children }) {
   return (
@@ -30,7 +31,7 @@ export default function Project() {
       <Link to="/#work" className="back" viewTransition>All work</Link>
 
       <header className="case-head">
-        <h1 style={{ viewTransitionName: `title-${p.slug}` }}>{p.name}</h1>
+        <Scramble as="h1" text={p.name} style={{ viewTransitionName: `title-${p.slug}` }} duration={600} key={p.slug} />
         <p className="case-tagline">{p.tagline}</p>
         <dl className="case-meta">
           <div><dt>Year</dt><dd>{p.year}</dd></div>

@@ -1,6 +1,8 @@
 import { Link } from "react-router";
 import BinaryRain from "../components/BinaryRain";
-import ParallaxPhoto from "../components/ParallaxPhoto";
+import ScanPhoto from "../components/ScanPhoto";
+import Scramble from "../components/Scramble";
+import Terminal from "../components/Terminal";
 import { projects } from "../data/projects";
 import { education, experience, links, moreProjects, skills } from "../data/site";
 
@@ -11,7 +13,7 @@ function WorkCard({ project, size }) {
         <img src={project.card || project.cover} alt="" loading="lazy" style={{ objectPosition: project.coverPosition }} />
       </span>
       <span className="card-body">
-        <span className="card-title" style={{ viewTransitionName: `title-${project.slug}` }}>{project.name}</span>
+        <Scramble text={project.name} className="card-title" style={{ viewTransitionName: `title-${project.slug}` }} onMount={false} duration={450} />
         <span className="card-tagline">{project.tagline}</span>
         <span className="card-stat"><b>{project.stat.value}</b> {project.stat.label}</span>
       </span>
@@ -24,13 +26,14 @@ const SIZES = { asli: "hero", datasetfinder: "tall", "weather-risk": "wide", mus
 export default function Home() {
   return (
     <>
-      <section className="hero" aria-labelledby="hero-title">
+      <section className="hero" aria-label="Introduction">
         <BinaryRain className="rain" />
         <span className="orb orb-a" aria-hidden="true" />
         <span className="orb orb-b" aria-hidden="true" />
         <div className="hero-inner">
           <div className="hero-copy">
-            <h1 id="hero-title">Nihar<br />Girish</h1>
+            <p className="hero-kicker" aria-hidden="true">&gt; ai_engineer.init()</p>
+            <Scramble as="h1" text={"Nihar\nGirish"} className="hero-name" duration={1100} />
             <p className="hero-lede">I'm an AI engineer in Bengaluru. I build AI tools that explain their answers and get tested before they ship.</p>
             <p className="hero-status">AI Engineer at EngConvo. Starting a Master of IT in AI at James Cook University, Brisbane, in February 2027.</p>
             <div className="hero-actions">
@@ -38,8 +41,9 @@ export default function Home() {
               <a className="btn btn-ghost" href={`mailto:${links.email}`}>Email me</a>
             </div>
           </div>
-          <ParallaxPhoto src="/nihar.webp" alt="Nihar Girish" />
+          <ScanPhoto src="/nihar.webp" alt="Nihar Girish" />
         </div>
+        <div className="hero-term"><Terminal /></div>
       </section>
 
       <section id="work" className="section" aria-labelledby="work-title">
